@@ -3,7 +3,7 @@ import {formattedReturn, postgresPool} from './functions/utils';
 
 import {FormattedReturnInterface} from './functions/helpers/formattedReturn';
 
-export default async function handler(req, res) {
+export default async function handler(req : any, res : any) {
   const { rows } = await postgresPool.query('SELECT * FROM users');
   res.status(200).json(rows)
 }

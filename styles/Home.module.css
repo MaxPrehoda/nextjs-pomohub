@@ -29,7 +29,7 @@
 }
 
 .title a {
-  color: #0070f3;
+  color: #ff6ae6;
   text-decoration: none;
 }
 
@@ -51,6 +51,7 @@
 }
 
 .description {
+  padding-bottom: 400px;
   margin: 4rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
@@ -88,8 +89,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: #ff6ae6;
+  border-color: #ff6ae6;
 }
 
 .card h2 {
@@ -126,4 +127,10 @@
   .logo img {
     filter: invert(1);
   }
+}
+
+.pomoImg {
+  /* rounded image */
+  border-radius: 2%;
+  margin-top: 45px;
 }

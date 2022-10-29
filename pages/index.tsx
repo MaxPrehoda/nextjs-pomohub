@@ -2,9 +2,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import * as medium1 from '../public/medium1.png'
+import React from 'react'
 
 export default function Home() {
-  return (
+  return(
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>

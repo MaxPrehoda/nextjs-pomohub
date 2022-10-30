@@ -6,6 +6,7 @@ export default async function handler(req : any, res : any) {
   if (req.method === 'POST') {
 
     if (req.body) {
+        console.log('rawr')
       const { session } = req.body;
       const { rows } = await postgresPool.query('INSERT INTO session (session) VALUES ($1) RETURNING *', [session]);
       res.status(200).json(rows)

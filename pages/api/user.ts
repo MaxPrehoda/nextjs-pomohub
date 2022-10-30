@@ -17,7 +17,6 @@ export default async function handler(req : any, res : any) {
       res.status(400).json({error: 'Username must be longer than 3 characters'})
     } else if (req.query.username.length > 20) {
       res.status(400).json({error: 'Username must be shorter than 20 characters'})
-    // else if the requested username is already taken
     } else if (await postgresPool.query('SELECT * FROM users WHERE username = $1', [req.query.username]).then((res: { rows: string | any[]; }) => res.rows.length > 0)) {
       res.status(400).json({error: 'Username already taken'})
     } else {

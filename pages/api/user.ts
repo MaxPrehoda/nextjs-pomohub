@@ -12,15 +12,20 @@ export default async function handler(req : any, res : any) {
     res.status(200).json(rows)
   }
 
-  if (req.method === 'POST') {
-
-    if (req.body.username) {
-      const { username } = req.body;
-      const { rows } = await postgresPool.query('INSERT INTO users (username) VALUES ($1) RETURNING *', [username]);
-      res.status(200).json(rows)
+  if (req.method === 'POST' && req.query.username) {
+    if (req.query.username.length < 3) {
+      res.status(400).json({error: 'Username must be longer than 3 characters'})
+    } else if (req.query.username.length > 20) {
+      res.status(400).json({error: 'Username must be shorter than 20 characters'})
+    // else if the requested username is already taken
+    } else if (await postgresPool.query('SELECT * FROM users WHERE username = $1', [req.query.username]).then((res: { rows: string | any[]; }) => res.rows.length > 0)) {
+      res.status(400).json({error: 'Username already taken'})
     } else {
-      res.status(400).json({message: 'username is required'})
+      const { rows } = await postgresPool.query('INSERT INTO users (username) VALUES ($1) RETURNING *', [req.query.username]);
+      res.status(200).json(rows)
     }
+  } else if (req.method === 'POST') {
+    res.status(400).json({error: 'username is required'})
   }
 }
 

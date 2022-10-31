@@ -13,34 +13,28 @@ export default async function handler(req : any, res : any) {
   }
 
 export const handlePostSession = async (req: any, res: any) => {
-    console.log(req.body);
-    const {body} = req;
-    const username = body.username;
-    const session_id = body.session_id;
-    const start_date = body.start_date;
-    const data = body.data;
-    console.log(username);
-    console.log(session_id);
-    console.log(start_date);
-    console.log(data);
-
-    if (req.body && req.body.username || req.body.start_date || req.body.session_id || req.body.data) {
-        if (req.body.session_id && req.body.username && req.body.start_date && req.body.data) {
-            const session = req.body;
+    const session = req.body;
+    if (session && session.username || session.start_date || session.session_id || session.session_data) {
+        if (session.session_id && session.username && session.start_date && session.session_data) {
             try {
                 const sanitizedSessionId = isSessionIdSanitized(session.session_id);
                 const sanitizedUsername = isUsernameSanitized(session.username);
                 const sanitizedStartDate = isStartDateSanitized(session.start_date);
-                const sanitizedData = isSessionDataSanitized(session.data);
+                const sanitizedData = isSessionDataSanitized(session.session_data);
+
+                console.log(sanitizedSessionId, sanitizedUsername, sanitizedStartDate, sanitizedData);
                 if (sanitizedSessionId && sanitizedUsername && sanitizedStartDate && sanitizedData) {
-                    const { rows } = await postgresPool.query('SELECT * FROM users WHERE username = $1', [session.username]);
-                    if (rows.length > 0) {
+                    const { rows: userRows } = await postgresPool.query('SELECT * FROM users WHERE username = $1', [session.username]);
+                    if (userRows.length > 0) {
+                        const user_id = userRows[0].id;
                         const { rows } = await postgresPool.query('SELECT * FROM session WHERE session_id = $1', [session.session_id]);
                         if (rows.length > 0) {
-                            const { rows } = await postgresPool.query('UPDATE session SET username = $1, start_date = $2, data = $3 WHERE session_id = $4 RETURNING *', [session.username, session.start_date, session.data, session.session_id]);
+                            console.log('session already exists');
+                            const { rows } = await postgresPool.query('UPDATE session SET user_ref = $1, start_date = $2, session_data = $3 WHERE session_id = $4 RETURNING *', [user_id, session.start_date, session.session_data, session.session_id]);
                             res.status(200).json(rows)
                         } else {
-                            const { rows } = await postgresPool.query('INSERT INTO session (session_id, username, start_date, data) VALUES ($1, $2, $3, $4) RETURNING *', [session.session_id, session.username, session.start_date, session.data]);
+                            console.log('session does not exist');
+                            const { rows } = await postgresPool.query('INSERT INTO session (session_id, user_ref, start_date, session_data) VALUES ($1, $2, $3, $4) RETURNING *', [session.session_id, user_id, session.start_date, session.session_data]);
                             res.status(200).json(rows)
                         }
                     } else {
@@ -89,7 +83,7 @@ export const isStartDateSanitized = (rawInput: any) => {
     return true;
 }
 export const isSessionDataSanitized = (rawInput: any) => {
-    if (rawInput === null || rawInput === undefined || typeof rawInput !== 'string') {
+    if (rawInput === null || rawInput === undefined || typeof rawInput !== 'object') {
         throw new Error('Invalid session data')
     }
     return true;

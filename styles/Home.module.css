@@ -18,7 +18,8 @@
   display: flex;
   flex: 1;
   padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid #3f3f3f;
+  background-color: rgb(20, 20, 20);
   justify-content: center;
   align-items: center;
 }
@@ -31,7 +32,7 @@
 }
 
 .title a {
-  color: #ff6ae6;
+  color: #fc76e5;
   text-decoration: none;
 }
 
@@ -61,8 +62,9 @@
 }
 
 .code {
-  background: #fafafa;
+  background: #fd88e4;
   border-radius: 5px;
+  color: #fff;
   padding: 1.25rem;
   font-size: 1.1rem;
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
@@ -93,8 +95,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #ff6ae6;
-  border-color: #ff6ae6;
+  color: #ff85db;
+  border-color: #fc76e5;
 }
 
 .card h2 {
@@ -136,5 +138,5 @@
 .pomoImg {
   /* rounded image */
   border-radius: 5px;
-  margin-top: 45px;
+  margin-top: 20px;
 }

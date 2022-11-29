@@ -4,7 +4,6 @@ import { BoltIcon, ChartBarIcon, ClockIcon, DevicePhoneMobileIcon, GlobeAltIcon,
 import styles from '../../styles/home.module.css'
 import * as medium1 from '../../public/medium1.png'
 import React from 'react'
-import { sendUsers } from '../api/users'
 import UserList from '../../components/UserList'
 
 const features = [

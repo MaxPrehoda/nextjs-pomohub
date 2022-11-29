@@ -6,11 +6,43 @@ import * as medium1 from '../../public/medium1.png'
 import React from 'react'
 import { sendUsers } from '../api/users'
 import UserList from '../../components/UserList'
+import Chart from 'chart.js/auto';
+import {Line} from 'react-chartjs-2';
+import {CategoryScale} from 'chart.js'; 
+Chart.register(CategoryScale);
+
+
+const placeholderDateData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+      {
+        label: 'Usage (hours)',
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: 'rgba(255, 117, 214,0.6)',
+        borderColor: 'rgba(255, 117, 214,1)',
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: 'rgba(255, 117, 214,1)',
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: 'rgba(255, 117, 214,1)',
+        pointHoverBorderColor: 'rgba(255, 117, 214,1)',
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data: [65, 59, 80, 81, 56, 55, 40]
+      }
+    ]
+  };
 
 //getStaticPaths 
 
 export async function getStaticPaths() {
-    const res = await fetch('https://pomohub.com/api/users')
+    const res = await fetch('https://pomohub.com/api/users/')
     const data = await res.json()
     const paths = data.map((user) => {
         return {
@@ -57,28 +89,43 @@ export default function leaderBoard({user}) {
   </span>
   </div>
   <div className="border-t border-gray-200">
-    <dl>
-      <div className="bg-neutral-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt className="text-sm font-medium text-gray-200">Highest Streak</dt>
-        <dd className="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0">3 days</dd>
-      </div>
-      <div className="bg-neutral-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt className="text-sm font-medium text-gray-200">Last session</dt>
-        <dd className="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0">ERROR</dd>
-      </div>
-      <div className="bg-neutral-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-      <dt className="text-sm font-medium text-gray-200">Socials</dt>
-        <dd className="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0">ERROR</dd>
-      </div>
-      <div className="bg-neutral-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt className="text-sm font-medium text-gray-200">About</dt>
-        <dd className="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
-      </div>
-      <div className="bg-neutral-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt className="text-sm font-medium text-gray-200">ID #</dt>
-        <dd className="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0">{user.id}</dd>
-      </div>
-    </dl>
+    <div className="flex flex-row">
+        <dl className='w-[600px] h-[420px] bg-neutral-800'>
+          <div className="bg-neutral-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-200">Highest Streak</dt>
+            <dd className="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0">3 days</dd>
+          </div>
+          <div className="bg-neutral-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-200">Last session</dt>
+            <dd className="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0">ERROR</dd>
+          </div>
+          <div className="bg-neutral-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt className="text-sm font-medium text-gray-200">Socials</dt>
+            <dd className="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0"><div className="flex flex-row gap-2">
+                <a href={"github.com/PLACEHOLDERFORDATA"}>
+                    <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M16 22.027v-2.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7a5.44 5.44 0 00-1.5-3.75 5.07 5.07 0 00-.09-3.77s-1.18-.35-3.91 1.48a13.38 13.38 0 00-7 0c-2.73-1.83-3.91-1.48-3.91-1.48A5.07 5.07 0 005 5.797a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 00-.94 2.58v2.87M9 20.027c-3 .973-5.5 0-7-3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg> 
+                </a><a href="twitter.com/PLACEHOLDERFORDATA">
+                    <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M23 3.01s-2.018 1.192-3.14 1.53a4.48 4.48 0 00-7.86 3v1a10.66 10.66 0 01-9-4.53s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5 0-.278-.028-.556-.08-.83C21.94 5.674 23 3.01 23 3.01z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </a>
+            </div></dd>
+          </div>
+          <div className="bg-neutral-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-200">About</dt>
+            <dd className="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
+          </div>
+          <div className="bg-neutral-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-200">ID #</dt>
+            <dd className="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0">{user.id}</dd>
+          </div>
+        </dl>
+        <dl className='w-[420px] h-[420px] pl-1'>
+        <Line
+      data={placeholderDateData}
+      width={400}
+      height={400}
+    />
+        </dl>
+    </div>
   </div>
 </div>
       </main>

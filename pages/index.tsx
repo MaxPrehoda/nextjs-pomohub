@@ -5,7 +5,6 @@ import styles from '../styles/Home.module.css'
 import * as medium1 from '../public/medium1.png'
 import React from 'react'
 
-
 const features = [
   {
     name: 'Time your work',

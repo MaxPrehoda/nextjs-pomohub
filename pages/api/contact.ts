@@ -21,6 +21,24 @@ const handleEmailSubmission = async (req: any, res: any) => {
             console.log("Ready to Send");
             }
         });
+
+        const mail = {
+            from: name,
+            to: process.env.EMAIL_ADDRESS,
+            subject: "Contact Form Submission",
+            html: `<p>Name: ${name}</p>
+                    <p>Email: ${email}</p>
+                    <p>Message: ${message}</p>`,
+        };
+
+        contactEmail.sendMail(mail, (error: any) => {
+            if (error) {
+            res.json({ status: "ERROR" });
+            } else {
+            res.json({ status: "Message Sent" });
+            }
+        });
+
     } else {
         res.status(400).json({error: 'name, email, and message are required'})
     }

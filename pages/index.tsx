@@ -4,6 +4,7 @@ import { BoltIcon, ChartBarIcon, ClockIcon, DevicePhoneMobileIcon, GlobeAltIcon,
 import styles from '../styles/Home.module.css'
 import * as medium1 from '../public/medium1.png'
 import React from 'react'
+import ContactForm from './components/ContactForm';
 
 const features = [
   {
@@ -90,6 +91,8 @@ export default function Home() {
         </div>
       </div>
     </div>
+
+    <ContactForm />
       </main>
 
       <footer className={styles.footer+' mt-20'}>

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { BoltIcon, ChartBarIcon, ClockIcon, DevicePhoneMobileIcon, GlobeAltIcon, GlobeAsiaAustraliaIcon, ListBulletIcon, ScaleIcon } from '@heroicons/react/24/outline'
-import styles from '../styles/home.module.css'
+import styles from '../styles/Home.module.css'
 import * as medium1 from '../public/medium1.png'
 import React from 'react'
 import ContactForm from './components/ContactForm';

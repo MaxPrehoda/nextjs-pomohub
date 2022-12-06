@@ -9,6 +9,7 @@ import Chart from 'chart.js/auto';
 import {Line} from 'react-chartjs-2';
 import {CategoryScale} from 'chart.js';
 Chart.register(CategoryScale);
+import { ParsedUrlQuery } from 'querystring';
 
 
 const placeholderDateData = {
@@ -56,7 +57,9 @@ export async function getStaticPaths() {
 
 //getStaticProps
 
-export async function getStaticProps({ params }) {
+
+
+export async function getStaticProps({ params } : {params: any}) {
     const res = await fetch(`https://pomohub.com/api/users/`)
     const data = await res.json()
     const username = data.find((user : any) => user.username === params.username)
@@ -67,7 +70,7 @@ export async function getStaticProps({ params }) {
 
 //function that gets the users from the api
 
-export default function leaderBoard({user}) {
+export default function leaderBoard({user} : {user: any}) {
   return(
     <div className={' bg-neutral-900'}>
       <Head>

@@ -10,6 +10,7 @@ import {Line} from 'react-chartjs-2';
 import {CategoryScale} from 'chart.js';
 Chart.register(CategoryScale);
 import { ParsedUrlQuery } from 'querystring';
+import { ChartData } from 'chart.js';
 
 
 const placeholderDateData = {
@@ -122,7 +123,7 @@ export default function leaderBoard({user} : {user: any}) {
         </dl>
         <dl className='w-[420px] h-[420px] pl-1'>
         <Line
-      data={placeholderDateData}
+      data={placeholderDateData as ChartData<"line", number[], string>}
       width={400}
       height={400}
     />

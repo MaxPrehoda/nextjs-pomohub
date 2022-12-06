@@ -29,7 +29,7 @@ function UserList() {
   return ( 
     // make a list of users with className='w-[300px] h-[25px] pb-2 mb-2 bg-white rounded-md' key={user.id}>{user.username}
     <ul>
-      {data.map((user) => (
+      {data.map((user : any) => (
         <Link href={'/userStats/' + user.username} key={user.id}>
         <li className='relative w-[300px] h-[40px] pb-2 mb-3 bg-neutral-700 rounded-md pl-2 pt-2' key={user.id}>{user.username}<p className='absolute right-0 pr-2 -mt-6'><span>
             {randomNum()}<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="-mt-6 ml-5 w-6 h-6">

@@ -43,7 +43,7 @@ const placeholderDateData = {
 export async function getStaticPaths() {
     const res = await fetch('https://pomohub.com/api/users/')
     const data = await res.json()
-    const paths = data.map((user) => {
+    const paths = data.map((user : any) => {
         return {
             params: { username: user.username.toString() }
         }
@@ -59,7 +59,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
     const res = await fetch(`https://pomohub.com/api/users/`)
     const data = await res.json()
-    const username = data.find((user) => user.username === params.username)
+    const username = data.find((user : any) => user.username === params.username)
     return {
         props: { user: username }
     }

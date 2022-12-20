@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 import * as medium1 from '../public/medium1.png'
 import React from 'react'
 import ContactForm from './components/ContactForm';
+import Nav from './components/Nav'
 
 const features = [
   {
@@ -43,8 +44,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main+' bg-neutral-900'}>
+        <Nav/>
       <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative mb-6 mt-6 overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20 bg-white bg-opacity-10">
+            <div className="relative mb-6 mt-12 overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20 bg-white bg-opacity-10">
               <span className="text-white">
                 Get access to weekly giveaways and premium features. <a href="#" className="font-semibold text-pink-400"><span className="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
               </span>
@@ -71,7 +73,7 @@ export default function Home() {
           <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">A better way to work</p>
           <h2 className="text-lg font-semibold leading-8 text-pink-400">The science behind the pomodoro technique</h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white">
-            Lorem ipsum dolor sit amet consect adipisicing elit. learn more about the science behind the pomodoro technique and how it helps supercharge your productivity...
+            Learn more about the science behind the pomodoro technique and how it helps supercharge your productivity...
           </p>
         </div>
         <div className="mt-20 max-w-lg sm:mx-auto md:max-w-none">

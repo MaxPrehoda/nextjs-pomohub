@@ -10,25 +10,25 @@ const features = [
   {
     name: 'Time your work',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Set a timer for a set period of minutes under 120 and focus exclusively on the tasks at hand. Then enjoy a timed break to recharge your mind and body.',
     icon: ClockIcon,
   },
   {
     name: 'Complete your tasks',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Track and complete your tasks with ease by setting up custom task lists, and checking off each item as you finish them.',
     icon: ListBulletIcon,
   },
   {
     name: 'Use it anywhere',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Access your task lists from any device, so you can stay on top of your schedule wherever you go.',
     icon: GlobeAsiaAustraliaIcon,
   },
   {
     name: 'View your stats',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'See your progress over time with charts and graphs that track your completed tasks and work habits. Compare and contrast your stats with friends to see how you can improve.',
     icon: ChartBarIcon,
   },
 ]
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
           <div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-center sm:text-6xl">Welcome to Pomo Hub</h1>
-            <p className="mt-6 text-lg leading-8 text-white sm:text-center  mb-6">Change the way you work. Elit sunt amet fugiat lisuyt aliqua veniam occaecat fugiat aliqua.</p>
+            <p className="mt-6 text-lg leading-8 text-white sm:text-center  mb-6">Change the way you work. Change the way you take breaks.</p>
           </div>
           <div className="flex justify-center">
               <Image src={medium1} alt="Pomodoro" className={styles.pomoImg+' w-1/2 border-[1px] border-white -mb-8'}/>
